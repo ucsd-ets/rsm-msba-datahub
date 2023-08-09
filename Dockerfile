@@ -16,7 +16,7 @@ USER root
 
 # TODO: Make any directories that are not accessible by default to Datahub user completely globally accessible.
 # Additionally, possibly attempt to kill/respawn jupyter?
-CMD chmod -R 777 /home/jovyan
+RUN chmod -R 777 /home/jovyan
 
 USER ${NB_UID}
 ENV HOME /home/${NB_USER}
