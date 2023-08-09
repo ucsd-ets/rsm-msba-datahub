@@ -5,7 +5,7 @@
 # See https://github.com/ucsd-ets/datahub-docker-stack/wiki/Stable-Tag 
 # for a list of the most current containers we maintain
 
-ARG BASE_CONTAINER=vnijs/rsm-msba-intel-jupyterhub:latest
+ARG BASE_CONTAINER=vnijs/rsm-msba-intel:latest
 
 FROM $BASE_CONTAINER
 
@@ -14,7 +14,7 @@ FROM $BASE_CONTAINER
 # Change to root to fix permissions...
 USER root
 
-CMD chmod -R 777 /home/jovyan
+#CMD chmod -R 777 /home/jovyan
 
 USER ${NB_UID}
 ENV HOME /home/${NB_USER}
