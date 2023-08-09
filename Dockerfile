@@ -5,7 +5,7 @@
 # See https://github.com/ucsd-ets/datahub-docker-stack/wiki/Stable-Tag 
 # for a list of the most current containers we maintain
 
-ARG BASE_CONTAINER=vnijs/rsm-msba-intel:latest
+ARG BASE_CONTAINER=vnijs/rsm-msba-intel-jupyterhub:latest
 
 FROM $BASE_CONTAINER
 
@@ -14,7 +14,9 @@ FROM $BASE_CONTAINER
 # Change to root to fix permissions...
 USER root
 
-#CMD chmod -R 777 /home/jovyan
+# TODO: Make any directories that are not accessible by default to Datahub user completely globally accessible.
+# Additionally, possibly attempt to kill/respawn jupyter?
+CMD chmod -R 777 /home/jovyan
 
 USER ${NB_UID}
 ENV HOME /home/${NB_USER}
