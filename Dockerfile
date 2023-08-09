@@ -14,7 +14,7 @@ FROM $BASE_CONTAINER
 # Change to root to fix permissions...
 USER root
 
-chmod -R 777 /home/jovyan
+CMD chmod -R 777 /home/jovyan
 
 USER ${NB_UID}
 ENV HOME /home/${NB_USER}
