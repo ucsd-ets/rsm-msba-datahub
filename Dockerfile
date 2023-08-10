@@ -7,10 +7,6 @@ FROM $BASE_CONTAINER
 # Change to root to fix permissions...
 USER root
 
-# Install postgres as an apt package...
-RUN apt-get update
-RUN apt-get install postgresql -y
-
 # TODO: Make any directories that are not accessible by default to Datahub user completely globally accessible.
 # Additionally, possibly attempt to kill/respawn jupyter?
 RUN chmod -R 777 /home/jovyan
