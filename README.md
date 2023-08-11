@@ -24,7 +24,7 @@ Host rsm-msba
 ```
 
 ```-H``` spawns a sshd session inside the container, and ```-j``` ensures that the jupyter notebook server is started. 
-However, please ensure you have the ```ProxyCommand``` keyword, otherwise you may spawn the VS Code server on dsmlp-login rather than the container itself.
+Additionally, please ensure you have the ```ProxyCommand``` keyword, otherwise you may spawn the VS Code server on dsmlp-login rather than the container itself.
 
 ## Connecting to Postgresql
 Because we only have access to one user whilst live in the container, you can use the provided script `start_single_user_postgres.sh` to setup postgresql without root access.
