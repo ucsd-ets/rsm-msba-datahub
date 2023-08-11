@@ -34,6 +34,13 @@ fi
 initdb -D pgdata
 mkdir "/home/${NB_USER}/pgdata/conf.d" 2>/dev/null
 
+PGDATA="${HOME}/pgdata"
+PGCONFIGFILE="${HOME}/pgdata/postgresql.conf"
+PGHBAFILE="${HOME}/pgdata/pg_hba.conf"
+PGIDENTFILE="${HOME}/pgdata/pg_ident.conf"
+PGPIDFILE="${HOME}/pgdata/pgsql-main.pd"
+PGUNIXSOCKETDIRS="${HOME}/pgdata/"
+
 CONFIGFILE="/etc/postgresql/${POSTGRES_VERSION}/main/postgresql.conf"
 TEMPCONFIGFILE="/home/${NB_USER}/temp_post.yml"
 

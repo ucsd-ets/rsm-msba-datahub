@@ -1,7 +1,7 @@
 # rsm-msba-datahub
 This image makes Datahub (and potentially other similarly-configured k8s clusters) compatible with https://github.com/radiant-rstats/docker/blob/master/rsm-msba-intel-jupyterhub/.
 
-**Note that it is imperative that this image be launched with [this startup script (private repo)](https://github.com/ucsd-ets/launch-sh/blob/main/bin/launch-rsm-msba.sh) if on Datahub OR if you'd like full postgresql functionality.**
+**Note that it may be helpful to launch this image [this startup script (private repo)](https://github.com/ucsd-ets/launch-sh/blob/main/bin/launch-rsm-msba.sh) if on Datahub.**
 
 ## What's Changed?
 As little as possible; it is ideal for everyone involved to keep functionality very similar with rsm-msba-intel-jupyterhub.
@@ -9,12 +9,12 @@ As little as possible; it is ideal for everyone involved to keep functionality v
 However, here is a brief summary of what *has* changed:
 - Certain directories such as `/home/jovyan` are accessible globally, and by any user. This is important for Datahub as users are only permitted to spawn k8s pods with their own UID.
 - Postgresql is not launched by root. Because nothing can be ran as UID 0 on Datahub (same reason as above), we simply run it as the local user instead. See further instructions below
-- The launch script above ensures 100% functionality, with a few changes.
+- The launch script above ensures 100% functionality if on Datahub
 
 If you would like to make changes to core rsm-msba functionality OR have a bug to report that is not caused by our unique environment, please head to the [above repo](https://github.com/radiant-rstats/docker/blob/master/rsm-msba-intel-jupyterhub/).
 
 ## Connecting to Postgresql
-Because we only have access to one user whilst live in the container, you can use the provided script to setup postgresql without root access.
+Because we only have access to one user whilst live in the container, you can use the provided script `start_single_user_postgres.sh` to setup postgresql without root access.
 You can either download and SCP it to the container manually, or run the following command whilst in the container:
 
 `wget -qO- https://github.com/ucsd-ets/rsm-msba-datahub/raw/master/start_single_user_postgres.sh | bash`
