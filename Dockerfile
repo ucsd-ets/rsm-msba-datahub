@@ -18,8 +18,6 @@ RUN chmod -R 777 /etc/postgresql/${POSTGRES_VERSION}
 RUN chmod -R 777 /var/lib/postgresql/
 #RUN chown -R ${NB_USER}:${NB_USER} /var/lib/postgresql
 
-RUN chmod 640 /etc/ssl/private/ssl-cert-snakeoil.key
-
 USER ${NB_UID}
 ENV HOME /home/${NB_USER}
 #USER jovyan
