@@ -25,6 +25,16 @@ This is where we differ from [these installation instructions.](https://github.c
 Under the `Scheme` tab in pgweb, use the following URL:
 `postgresql://<YOUR_USERNAME>:postgres@127.0.0.1:8765/rsm-docker?sslmode=disable`
 
+Note that you can use this line in Jupyter Notebooks as well:
+```
+from sqlalchemy import create_engine, inspect
+engine = create_engine('postgresql://<YOUR_USERNAME>:postgres@127.0.0.1:8765/rsm-docker?sslmode=disable')
+
+## show list of tables
+inspector = inspect(engine)
+inspector.get_table_names()
+```
+
 SSL is currently disabled because the permissions requirements for the key/cert are a bit quirky.
 This may be changed soon but is still okay for our purposes (non-production, kubernetes pod).
 
