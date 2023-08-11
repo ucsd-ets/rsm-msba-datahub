@@ -30,14 +30,15 @@ Under the `Scheme` tab in pgweb, use the following URL:
 SSL is currently disabled because the permissions requirements for the key/cert are a bit quirky.
 This may be changed soon but is still okay for our purposes (non-production, kubernetes pod).
 
-To START your local postgres server: `pg_ctl -D /home/<YOUR_USERNAME>/pgdata -l /home/<YOUR_USERNAME>/logfile start"`
-To STOP your local postgres server: `pg_ctl -D /home/<YOUR_USERNAME>/pgdata -l /home/<YOUR_USERNAME>/logfile stop"`
+To _START_ your local postgres server: `pg_ctl -D /home/<YOUR_USERNAME>/pgdata -l /home/<YOUR_USERNAME>/logfile start"`
+
+To _STOP_ your local postgres server: `pg_ctl -D /home/<YOUR_USERNAME>/pgdata -l /home/<YOUR_USERNAME>/logfile stop"`
 
 You can also simply run the initial script again to toggle between shutdown/active.
 
 ## Installing pip and apt packages
 Because we don't have access to root + could potentially leave our container in a bad state, please only install apt or pip packages using the Dockerfile in this repo.
-(This means forking this repository, updating the dockerfile, and then modifying the launch script above to use your image instead, e.g. ghcr.io/your-name-here/rsm-msba-datahub:master)
+(This means forking this repository, updating the dockerfile, and then modifying the launch script above to use your image instead, e.g. `ghcr.io/your-name-here/rsm-msba-datahub:master`)
 
 Example for **apt**: 
 
