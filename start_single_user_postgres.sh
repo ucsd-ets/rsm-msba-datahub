@@ -16,23 +16,23 @@
 #!/bin/bash
 
 # If pgdata exists, stop or start depending on if PID file exists
-if [ -d "/home/${NB_USER}/pgdata" ]; then
+if [ -d "${HOME}/pgdata" ]; then
     echo "pgdata/ already exists."
-    if [ -f "/home/${NB_USER}/pgdata/pgsql-main.pd" ]; then
+    if [ -f "${HOME}/pgdata/pgsql-main.pd" ]; then
         # Stop postgres
         echo "Stopping postgres..."
-        pg_ctl -D "/home/${NB_USER}/pgdata/" -l "/home/${NB_USER}/logfile" stop
+        pg_ctl -D "${HOME}/pgdata/" -l "${HOME}/logfile" stop
     else
         # Start postgres
         echo "Starting postgres..."
-        pg_ctl -D "/home/${NB_USER}/pgdata/" -l "/home/${NB_USER}/logfile" start
+        pg_ctl -D "${HOME}/pgdata/" -l "${HOME}/logfile" start
     fi
     exit 0
 fi
 
 # Setup vars + ensure pgdata exists
 initdb -D pgdata
-mkdir "/home/${NB_USER}/pgdata/conf.d" 2>/dev/null
+mkdir "/home/${USER}/pgdata/conf.d" 2>/dev/null
 
 PGDATA="${HOME}/pgdata"
 PGCONFIGFILE="${HOME}/pgdata/postgresql.conf"
@@ -42,7 +42,7 @@ PGPIDFILE="${HOME}/pgdata/pgsql-main.pd"
 PGUNIXSOCKETDIRS="${HOME}/pgdata/"
 
 CONFIGFILE="/etc/postgresql/${POSTGRES_VERSION}/main/postgresql.conf"
-TEMPCONFIGFILE="/home/${NB_USER}/temp_post.yml"
+TEMPCONFIGFILE="${HOME}/temp_post.yml"
 
 HBAFILE="/etc/postgresql/${POSTGRES_VERSION}/main/pg_hba.conf"
 
@@ -84,10 +84,10 @@ cp "$HBAFILE" "$PGHBAFILE"
 cp "$IDENTFILE" "$PGIDENTFILE"
 
 # Initialize server, create DB
-cd "/home/${NB_USER}"
-pg_ctl -D "/home/${NB_USER}/pgdata/" -l "/home/${NB_USER}/logfile" start
-createdb -O "${NB_USER}" rsm-docker -p 8765 -h "/home/${NB_USER}/pgdata/"
-psql rsm-docker -U "${NB_USER}" -h "/home/${NB_USER}/pgdata/" -p 8765 -c "ALTER USER ${NB_USER} WITH PASSWORD '${PGPASSWORD}';"
+cd "${HOME}"
+pg_ctl -D "${HOME}/pgdata/" -l "${HOME}/logfile" start
+createdb -O "${USER}" rsm-docker -p 8765 -h "${HOME}/pgdata/"
+psql rsm-docker -U "${USER}" -h "${HOME}/pgdata/" -p 8765 -c "ALTER USER ${USER} WITH PASSWORD '${PGPASSWORD}';"
 
 echo "#####################################################################################"
 echo "#####################################################################################"
@@ -96,11 +96,11 @@ echo ""
 echo ""
 echo ""
 echo "Your local, non-root postgres server has been started."
-echo "All data is stored in /home/${NB_USER}/pgdata. Please DELETE this dir if you need to init your database setup again."
+echo "All data is stored in /home/${USER}/pgdata. Please DELETE this dir if you need to init your database setup again."
 echo ""
 echo "Please write down these commands! You will need to run this if your environment is interrupted."
-echo "To START your local postgres server ----> pg_ctl -D /home/${NB_USER}/pgdata -l /home/${NB_USER}/logfile start"
-echo "To STOP your local postgres server ----> pg_ctl -D /home/${NB_USER}/pgdata -l /home/${NB_USER}/logfile stop"
+echo "To START your local postgres server ----> pg_ctl -D ${HOME}/pgdata -l ${HOME}/logfile start"
+echo "To STOP your local postgres server ----> pg_ctl -D ${HOME}/pgdata -l ${HOME}/logfile stop"
 echo "Running this script from this point onwards will do the inverse of the DB's state (shorthand for the above commands)."
 echo "If it is shutdown, it will be started. If it is active, it will be shutdown."
 echo ""
