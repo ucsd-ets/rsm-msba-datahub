@@ -78,4 +78,5 @@ RUN pip install --no-cache-dir <package>
 
 ## Additional Notes
 If you are on DSMLP and would like to get your jupyter server **link** in a VS Code server environment (or if you forgot it), run the following command:
+
 `wget -qO- https://github.com/ucsd-ets/rsm-msba-datahub/raw/master/dsmlp_check_jupyter_url.sh | bash`
