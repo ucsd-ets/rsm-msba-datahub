@@ -13,6 +13,19 @@ However, here is a brief summary of what *has* changed:
 
 If you would like to make changes to core rsm-msba functionality OR have a bug to report that is not caused by our unique environment, please head to the [above repo](https://github.com/radiant-rstats/docker/blob/master/rsm-msba-intel-jupyterhub/).
 
+## Setting up a VSCode Remote
+For DSMLP, here is an SSH configuration which will permit you to connect to this container with the VS Code Server:
+```
+Host rsm-msba
+    ProxyCommand ssh -i ~/.ssh/<your_key_here> <username>@dsmlp-login.ucsd.edu /opt/launch-sh/bin/launch-rsm-msba.sh -N vscode-dsmlp -H -j
+    User <username>
+    Port 22
+    IdentityFile ~/.ssh/<your_key_here>
+```
+
+```-H``` spawns a sshd session inside the container, and ```-j``` ensures that the jupyter notebook server is started. 
+However, please ensure you have the ```ProxyCommand``` keyword, otherwise you may spawn the VS Code server on dsmlp-login rather than the container itself.
+
 ## Connecting to Postgresql
 Because we only have access to one user whilst live in the container, you can use the provided script `start_single_user_postgres.sh` to setup postgresql without root access.
 You can either download and SCP it to the container manually, or run the following command whilst in the container:
@@ -62,3 +75,7 @@ Example for **pip**:
 ```
 RUN pip install --no-cache-dir <package>
 ```
+
+## Additional Notes
+If you are on DSMLP and would like to get your jupyter server **link** in a VS Code server environment (or if you forgot it), run the following command:
+`wget -qO- https://github.com/ucsd-ets/rsm-msba-datahub/raw/master/dsmlp_check_jupyter_url.sh | bash`
