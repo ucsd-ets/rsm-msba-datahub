@@ -15,9 +15,7 @@ If you would like to make changes to core rsm-msba functionality OR have a bug t
 
 ## Connecting to Postgresql
 Because we only have access to one user whilst live in the container, you can use the provided script to setup postgresql without root access.
-The script below should be ran automatically provided you're using the launch script above.
-
-If it does not, you can download and SCP it to the container manually, or run the following command whilst in the container:
+You can either download and SCP it to the container manually, or run the following command whilst in the container:
 
 `wget -qO- https://github.com/ucsd-ets/rsm-msba-datahub/raw/master/start_single_user_postgres.sh | bash`
 
