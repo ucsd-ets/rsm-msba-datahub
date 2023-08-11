@@ -14,11 +14,11 @@ RUN apt install netcat -y
 # Make any directories that are not accessible by default to Datahub user completely globally accessible.
 RUN chmod -R 777 /home/jovyan
 
-# (Temporarily) Make postgresql + dependency dirs global
-#RUN chmod -R 777 /etc/postgresql/${POSTGRES_VERSION}
+# Make postgresql + dependency dirs global (for helper script to copy + modify)
+RUN chmod -R 777 /etc/postgresql/${POSTGRES_VERSION}
 #RUN chown -R ${NB_USER}:${NB_USER} /etc/postgresql/${POSTGRES_VERSION}
 
-#RUN chmod -R 777 /var/lib/postgresql/
+RUN chmod -R 777 /var/lib/postgresql/
 #RUN chown -R ${NB_USER}:${NB_USER} /var/lib/postgresql
 
 USER ${NB_UID}
