@@ -7,6 +7,10 @@ LABEL maintainer="UC San Diego ITS/ETS <ets-consult@ucsd.edu>"
 # Change to root to fix permissions...
 USER root
 
+# Install netcat for VSCode functionality
+RUN apt update
+RUN apt install netcat -y
+
 # Make any directories that are not accessible by default to Datahub user completely globally accessible.
 RUN chmod -R 777 /home/jovyan
 
