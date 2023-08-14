@@ -9,7 +9,7 @@ As little as possible; it is ideal for everyone involved to keep functionality v
 However, here is a brief summary of what *has* changed:
 - Certain directories such as `/home/jovyan` are accessible globally, and by any user. This is important for Datahub as users are only permitted to spawn k8s pods with their own UID.
 - Postgresql is not launched by root. Because nothing can be ran as UID 0 on Datahub (same reason as above), we simply run it as the local user instead. See further instructions below
-- Certain directories (such as dotnet) have been deleted in order to make space for the Github runner's default storage quota. (See the action in ```.github``` for more details.)
+- "Optional" directories (such as dotnet) have been deleted in order to make space for the Github runner's default storage quota. (See the action in ```.github``` for more details.)
 - The launch script above ensures 100% functionality if on Datahub
 
 If you would like to make changes to core rsm-msba functionality OR have a bug to report that is not caused by our unique environment, please head to the [above repo](https://github.com/radiant-rstats/docker/blob/master/rsm-msba-intel-jupyterhub/).
